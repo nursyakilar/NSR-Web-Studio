@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>nursyakilar — Friendly, affordable websites for small businesses</title>
+<meta name="description" content="nursyakilar designs warm, simple, affordable websites for small businesses, cafés, tutors, clinics, homestays and home-based shops. No jargon, no pressure — just a website that works for you." />
+<meta name="theme-color" content="#FAF6EF" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="nursyakilar — Calm, simple websites for small businesses" />
+<meta property="og:description" content="Friendly web design for small businesses who deserve a beautiful website without the agency price tag." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#FAF6EF',
+          pink: { DEFAULT: '#AFC9D9', light: '#A9B89B', dark: '#5F7053' },
+          sage: { DEFAULT: '#E3B6B0', dark: '#CE948C' },
+          beige: '#EFE6D8',
+          skyblue: { DEFAULT: '#AFC9D9', dark: '#7FA3B8' },
+          ink: '#433D33',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Karla', 'sans-serif'],
+        },
+        borderRadius: {
+          'soft': '1.75rem',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+  body{ font-family: 'Karla', sans-serif; background-color: #FAF6EF; color:#433D33; }
+  h1,h2,h3,h4,.font-display{ font-family: 'Fraunces', serif; }
+
+  /* texture: very subtle paper grain */
+  .paper-grain{
+    background-image: radial-gradient(circle at 1px 1px, rgba(67,61,51,0.035) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in-view{ opacity:1; transform: translateY(0); }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline: 3px solid #7C8F6E; outline-offset: 3px; border-radius: 0.4rem;
+  }
+
+  /* sticky nav shadow on scroll */
+  header.scrolled{ box-shadow: 0 6px 24px rgba(67,61,51,0.06); }
+
+  /* gentle float for small badges */
+  .float-soft{ animation: floaty 5s ease-in-out infinite; }
+  @keyframes floaty{ 0%,100%{ transform: translateY(0px); } 50%{ transform: translateY(-6px); } }
+
+  /* card hover */
+  .lift{ transition: transform 0.35s ease, box-shadow 0.35s ease; }
+  .lift:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px rgba(67,61,51,0.10); }
+
+  /* back to top */
+  #backToTop{ transition: opacity 0.35s ease, transform 0.35s ease; }
+
+  /* mobile menu */
+  #mobileMenu{ transition: max-height 0.4s ease; }
+
+  details > summary{ list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker{ display:none; }
+  details[open] .chev{ transform: rotate(180deg); }
+  .chev{ transition: transform 0.3s ease; }
+</style>
+</head>
+
+<body class="bg-cream text-ink antialiased">
+
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-sage text-cream px-4 py-2 rounded-full z-[60]">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header id="siteHeader" class="fixed top-0 inset-x-0 z-50 bg-cream/90 backdrop-blur-md transition-shadow duration-300">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between" aria-label="Primary">
+    <a href="#hero" class="flex items-center gap-2 font-display text-xl sm:text-2xl text-sage-dark font-semibold">
+      <span class="w-8 h-8 rounded-full bg-sage text-cream flex items-center justify-center font-display text-base font-semibold" aria-hidden="true">nsr</span>
+      NSR Web Studio
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-[15px] font-medium text-ink/80">
+      <a href="#about" class="hover:text-sage-dark transition-colors">About</a>
+      <a href="#services" class="hover:text-sage-dark transition-colors">Services</a>
+      <a href="#process" class="hover:text-sage-dark transition-colors">How it works</a>
+      <a href="#portfolio" class="hover:text-sage-dark transition-colors">Work</a>
+      <a href="#pricing" class="hover:text-sage-dark transition-colors">Pricing</a>
+      <a href="#faq" class="hover:text-sage-dark transition-colors">FAQ</a>
+      <a href="#contact" class="bg-sage hover:bg-sage-dark text-cream px-5 py-2.5 rounded-full transition-colors shadow-sm">Say hello</a>
+    </div>
+
+    <button id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden p-2 -mr-2 text-ink" aria-label="Open menu">
+      <svg id="iconOpen" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      <svg id="iconClose" class="hidden" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden bg-cream border-t border-ink/5">
+    <div class="px-6 py-4 flex flex-col gap-4 text-base font-medium">
+      <a href="#about" class="menu-link">About</a>
+      <a href="#services" class="menu-link">Services</a>
+      <a href="#process" class="menu-link">How it works</a>
+      <a href="#portfolio" class="menu-link">Work</a>
+      <a href="#pricing" class="menu-link">Pricing</a>
+      <a href="#faq" class="menu-link">FAQ</a>
+      <a href="#contact" class="menu-link text-sage-dark font-semibold">Say hello →</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative overflow-hidden pt-36 pb-24 sm:pt-44 sm:pb-32 px-5 sm:px-8 paper-grain">
+  <!-- soft blobs -->
+  <div class="absolute -top-24 -right-24 w-72 h-72 bg-pink/40 rounded-full blur-3xl"></div>
+  <div class="absolute top-40 -left-20 w-64 h-64 bg-skyblue/30 rounded-full blur-3xl"></div>
+
+  <div class="max-w-6xl mx-auto relative grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="inline-flex items-center gap-2 bg-beige text-sage-dark text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+        Websites for small businesses
+      </p>
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-[1.15] font-semibold text-ink">
+        A simple and modern website without the stress.
+      </h1>
+      <p class="mt-6 text-lg text-ink/75 leading-relaxed max-w-md">
+        I'm Syakila. I build simple and easy-to-understand websites for cafés, tutors, clinics, homestays, and home businesses.
+      </p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#contact" class="bg-sage hover:bg-sage-dark text-cream px-7 py-3.5 rounded-full font-semibold shadow-md transition-colors">Let's talk about your website</a>
+        <a href="#portfolio" class="bg-white/70 hover:bg-white text-ink px-7 py-3.5 rounded-full font-semibold border border-ink/10 transition-colors">See my work</a>
+      </div>
+      <p class="mt-6 text-sm text-ink/55">Just a friendly chat to start.</p>
+    </div>
+
+    <!-- hero visual placeholder — add your own photo/background here -->
+    <div class="relative flex justify-center reveal">
+      <div class="relative w-full max-w-sm aspect-square bg-beige/70 rounded-soft shadow-[0_30px_60px_-15px_rgba(67,61,51,0.15)]"></div>
+      <img src="photo.jpg" alt="A descriptive description of the image" class="profile-pic">
+      <span class="absolute -bottom-4 -left-2 bg-pink/80 text-ink text-xs font-semibold px-3 py-1 rounded-full rotate-[-4deg] shadow-sm">made with care, not templates</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-14 items-start">
+    <div class="md:col-span-2 reveal">
+      <div class="relative bg-sage/10 rounded-soft p-8 sm:p-10">
+        <svg class="w-10 h-10 text-sage-dark mb-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c4 0 5.3 4 3.5 7.5C15 16.65 12 21 12 21Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h2 class="font-display text-3xl font-semibold mb-4">Hi, I'm Syakila 👋</h2>
+        <p class="text-ink/75 leading-relaxed mb-4">
+          I was born and raised in Lahad Datu, Sabah but currently living in Kuala Lumpur. Before building my own business, I spent years working as a business analyst where I sit with companies, listening to what they actually needed, and writing it down clearly enough for anyone to understand. I also worked in software support and documentation, which taught me one big lesson:
+        </p>
+        <p class="font-display text-xl text-sage-dark italic">"Most small businesses don’t need complicated tech. They need clarity, structure, and something that just works."</p>
+      </div>
+    </div>
+
+    <div class="md:col-span-3 reveal">
+      <p class="text-sage-dark font-semibold mb-3 uppercase text-sm tracking-wide">A little more about me</p>
+      <p class="text-ink/80 leading-relaxed mb-5">
+        I started NSR Web Studio to build websites for small businesses who are often told: “just figure it out yourself” or quoted prices that don’t make sense.
+      </p>
+      <p class="text-ink/80 leading-relaxed mb-5">
+        Now I work closely with each client — asking simple questions, understanding the business, and building something that actually fits them.
+      </p>
+      <p class="text-ink/80 leading-relaxed mb-8">
+        I'm not trying to build a big agency. I'd rather work closely with fewer clients, do the work properly, and still be the person you can message two years later when you need a small update.
+      </p>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-beige rounded-2xl p-5">
+          <p class="font-display text-2xl font-semibold text-sage-dark">Business Analysis</p>
+          <p class="text-sm text-ink/65 mt-1">Understanding what your business really needs</p>
+        </div>
+        <div class="bg-beige rounded-2xl p-5">
+          <p class="font-display text-2xl font-semibold text-sage-dark">Clear documentation</p>
+          <p class="text-sm text-ink/65 mt-1">Everything explained simply so you can understand easily.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 sm:py-32 px-5 sm:px-8 bg-beige/50">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3">What I can help with</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold">My Services</h2>
+      <p class="text-ink/70 mt-4 leading-relaxed">No confusing packages or hidden add-ons.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="reveal lift bg-white rounded-soft p-7 shadow-sm border border-ink/5">
+        <div class="w-12 h-12 rounded-full bg-sage/15 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="1.7"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-2">Custom WordPress Business Website</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">A proper website for businesses who want something they can grow with.</p>
+          <ul class="text-sm text-ink/65 leading-relaxed list-disc list-inside mt-2">
+            <li>Up to 5 pages (Home, About, Services, Contact, etc.)</li>
+            <li>Mobile-friendly and clean design</li>
+            <li>Easy to update on your own</li>
+            <li>WhatsApp + contact button integration</li>
+            <li>Built to help people actually reach you</li>
+          </ul> 
+      </div>
+
+      <div class="reveal lift bg-white rounded-soft p-7 shadow-sm border border-ink/5">
+        <div class="w-12 h-12 rounded-full bg-pink/20 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CE948C" stroke-width="1.7"><path d="M12 20l9-9-9-9-9 9 9 9Z"/><path d="M12 8v8M8 12h8"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-2">One-Page Starter Website</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">For small businesses that just need to get online fast.</p>
+               <ul class="text-sm text-ink/65 leading-relaxed list-disc list-inside mt-2">
+<li>For small businesses that just need to get online fast.</li>
+<li>Simple scrolling page that explains your business clearly</li>
+<li>Focused on getting inquiries</li>
+<li>WhatsApp / call buttons built in</li>
+<li>Fast setup (great for Instagram-based businesses)</li>
+            </ul> 
+      </div>
+
+      <div class="reveal lift bg-white rounded-soft p-7 shadow-sm border border-ink/5">
+        <div class="w-12 h-12 rounded-full bg-pink/20 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CE948C" stroke-width="1.7"><path d="M12 2v6m0 8v6M4.2 4.2l4.2 4.2m7.2 7.2l4.2 4.2M2 12h6m8 0h6M4.2 19.8l4.2-4.2m7.2-7.2l4.2-4.2"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-2">Local Google Visibility Package (SEO & Maps)</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">So people near you can actually find you.</p>
+                       <ul class="text-sm text-ink/65 leading-relaxed list-disc list-inside mt-2">
+<li>Google Business Profile setup</li>
+<li>Basic structure so Google understands your business</li>
+<li>Help your website show up in local searches</li>
+            </ul> 
+      </div>
+      
+      <div class="reveal lift bg-white rounded-soft p-7 shadow-sm border border-ink/5">
+        <div class="w-12 h-12 rounded-full bg-skyblue/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FA3B8" stroke-width="1.7"><path d="M3 12c2-4 6-7 9-7s7 3 9 7c-2 4-6 7-9 7s-7-3-9-7Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-2">Website Care & Maintenance</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">Regular updates, backups, and small fixes to help keep your website running smoothly after it's launched.</p>
+      </div>
+
+            <div class="reveal lift bg-white rounded-soft p-7 shadow-sm border border-ink/5">
+        <div class="w-12 h-12 rounded-full bg-skyblue/25 flex items-center justify-center mb-5">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7FA3B8" stroke-width="1.7"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold mb-2">Website Updates</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">Need to change text, photos, prices, or add new information? I can keep your website up to date.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-16 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3">Working together</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold">Four small steps, no surprises</h2>
+      <p class="text-ink/70 mt-4 leading-relaxed">Here's exactly what happens after you reach out, step by step.</p>
+    </div>
+
+    <div class="relative grid md:grid-cols-4 gap-10 md:gap-6">
+      <!-- connecting line between steps (desktop) -->
+      <svg class="hidden md:block absolute top-7 left-0 w-full h-6 -z-0" viewBox="0 0 800 24" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M40 12 H760" stroke="#D9CDB8" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+      </svg>
+
+      <div class="reveal relative z-10">
+        <div class="w-14 h-14 rounded-full bg-sage flex items-center justify-center mb-5 shadow-md">
+          <span class="font-display text-xl font-semibold text-cream">1</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">We talk</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">Tell me about your business, your goals, and what you need.</p>
+      </div>
+
+      <div class="reveal relative z-10">
+        <div class="w-14 h-14 rounded-full bg-pink-dark flex items-center justify-center mb-5 shadow-md">
+          <span class="font-display text-xl font-semibold text-cream">2</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">I build</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">I'll design a website that fits your style, goals and is easy to use on any device.</p>
+      </div>
+
+      <div class="reveal relative z-10">
+        <div class="w-14 h-14 rounded-full bg-skyblue flex items-center justify-center mb-5 shadow-md">
+          <span class="font-display text-xl font-semibold text-cream">3</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">You review </h3>
+        <p class="text-ink/70 text-sm leading-relaxed">You can request changes before the website goes live.</p>
+      </div>
+
+      <div class="reveal relative z-10">
+        <div class="w-14 h-14 rounded-full bg-sage-dark flex items-center justify-center mb-5 shadow-md">
+          <span class="font-display text-xl font-semibold text-cream">4</span>
+        </div>
+        <h3 class="font-display text-lg font-semibold mb-2">Launch & support</h3>
+        <p class="text-ink/70 text-sm leading-relaxed">Once you're happy, I'll publish your website and make sure everything is working smoothly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PORTFOLIO ============ -->
+<section id="portfolio" class="py-24 sm:py-32 px-5 sm:px-8 bg-beige/50">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3">A peek at the work</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold">Recent projects</h2>
+      <p class="text-ink/70 mt-4 leading-relaxed">A few examples of the kind of websites I love making.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+
+     <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-pink/30 to-beige flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7FA3B8" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c4 0 5.3 4 3.5 7.5C15 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Business Website</p>
+          <h3 class="font-display text-lg font-semibold mb-2">GTA Consultancy</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">A business website for a consultancy firm providing expert advice and solutions.</p>
+           <img src="website1.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://gtaconsultancy.com/en/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+        </div>
+      </article>
+
+      <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-pink/30 to-beige flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7FA3B8" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c4 0 5.3 4 3.5 7.5C15 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Business Website</p>
+          <h3 class="font-display text-lg font-semibold mb-2">Travel With Syakila</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">A travel journal showcasing destinations, experiences, and travel tips for fellow adventurers using WordPress.</p>
+           <img src="website2.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href=" #portfolio" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+        </div>
+      </article>
+
+      <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-beige to-sage/20 flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7C8F6E" stroke-width="1.4"><path d="M3 11l9-8 9 8M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Concept Project </p>
+          <h3 class="font-display text-lg font-semibold mb-2">Strawberry Cat Bakery</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">Goal: Create a warm, inviting online presence for a fictional café, making it easy for visitors to explore the menu, location, and café atmosphere.</p>
+          <p class="text-sm text-ink/65 leading-relaxed">Solution: Designed and developed a responsive one-page website using HTML, CSS, and JavaScript, focusing on fast performance, intuitive navigation, and a cozy visual identity inspired by strawberries and cats.</p>
+          <img src="website4.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://nursyakilar.github.io/strawberry-cat/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+        </div>
+      </article>
+
+            <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-beige to-sage/20 flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7C8F6E" stroke-width="1.4"><path d="M3 11l9-8 9 8M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Concept Project </p>
+          <h3 class="font-display text-lg font-semibold mb-2">Bright Smile Dentist</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">Goal: Create a modern, professional online presence for a dental practice, emphasizing patient care and trust.</p>
+          <p class="text-sm text-ink/65 leading-relaxed">Solution: Designed and developed a responsive one-page website using HTML, CSS, and JavaScript, focusing on fast performance, intuitive navigation, and a clean visual identity inspired by healthcare and smiles.</p>
+          <img src="website7.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://nursyakilar.github.io/dentist/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+        </div>
+      </article>
+
+            <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-skyblue/30 to-beige flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7FA3B8" stroke-width="1.4"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c4 0 5.3 4 3.5 7.5C15 16.65 12 21 12 21Z"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Volunteer Project </p>
+          <h3 class="font-display text-lg font-semibold mb-2">Personal Portfolio Website for Azrin</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">A simple online portfolio that highlights skills, experience, and contact details for job applications with downloadable résumé.</p>
+           <img src="website3.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://nursyakilar.github.io/resume-azrin/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+          </p>
+        </div>
+      </article>
+ <!--
+      <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-pink/25 to-skyblue/20 flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#CE948C" stroke-width="1.4"><path d="M6 2 3 6v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V6l-3-4M3 6h18M9 11a3 3 0 0 0 6 0"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Volunteer Project</p>
+          <h3 class="font-display text-lg font-semibold mb-2">Personal Business Analyst Portfolio Website for Nursyakila</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">A business analyst resume website showcasing skills, experience, and contact details for job applications.</p>
+          <img src="website5.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://nursyakilar.github.io/resume-kila/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+          </p>
+        </div>
+      </article>
+    -->
+
+      <article class="reveal lift bg-white rounded-soft overflow-hidden shadow-sm border border-ink/5">
+        <div class="h-44 bg-gradient-to-br from-sage/25 to-pink/15 flex items-center justify-center">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#7C8F6E" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M9 15h6M9 12h6"/></svg>
+        </div>
+        <div class="p-6">
+          <p class="text-xs font-semibold text-sage-dark uppercase tracking-wide mb-1">Volunteer Project</p>
+          <h3 class="font-display text-lg font-semibold mb-2">Personal HR Portfolio Website for Pratish</h3>
+          <p class="text-sm text-ink/65 leading-relaxed">A bold and modern website to showcase Pratish's human resources expertise and experience.</p>
+          <img src="website6.png" alt="A descriptive description of the image" class="profile-pic">
+           <a href="https://nursyakilar.github.io/resume-HR/" target="_blank" class="text-sage-dark font-semibold mt-3 inline-block">Visit website →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="max-w-2xl mb-14 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3">Fair, upfront pricing</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold">Affordable, transparent pricing for small businesses.</h2>
+      <p class="text-ink/70 mt-4 leading-relaxed">These are starting points. Final pricing depends on what your business needs — nothing unnecessary added.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-7">
+
+      <div class="reveal bg-beige rounded-soft p-8 border border-ink/5">
+        <h3 class="font-display text-xl font-semibold mb-1">Starter Website</h3>
+        <p class="text-ink/60 text-sm mb-5">A simple, fast, lightweight website for small businesses who just need to get online.</p>
+        <p class="font-display text-3xl font-semibold text-sage-dark mb-1">From RM 450 onwards</p>
+        <p class="text-xs text-ink/50 mb-6">one-time</p>
+        <ul class="space-y-3 text-sm text-ink/75 mb-8">
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> 1-page website (landing page style) </li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Built with HTML, Tailwind CSS & JavaScript (Ultra-fast loading)</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Responsive design, mobile-friendly by default</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> DirectWhatsApp & contact buttons</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Google Business Profile Setup (Get found online)</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> 1 round of design revisions</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Delivery in 5-7 days</li>
+          <li class="flex gap-2"><span class="text-sage-dark">x</span> No backend dashboard (Best if your info rarely changes)</li>
+        </ul>
+        <a href="#contact" class="block text-center bg-white hover:bg-sage hover:text-cream transition-colors text-ink font-semibold py-3 rounded-full border border-ink/10">Start here</a>
+      </div>
+
+      <div class="reveal bg-sage text-cream rounded-soft p-8 relative shadow-xl md:-translate-y-3">
+        <span class="absolute -top-3 right-6 bg-pink text-ink text-xs font-semibold px-3 py-1 rounded-full">most chosen</span>
+        <h3 class="font-display text-xl font-semibold mb-1">Business Website</h3>
+        <p class="text-cream/80 text-sm mb-5">For businesses that need more information and pages.</p>
+        <p class="font-display text-3xl font-semibold mb-1">From RM 850 onwards</p>
+        <p class="text-xs text-cream/70 mb-6">one-time</p>
+        <ul class="space-y-3 text-sm text-cream/90 mb-8">
+          <li class="flex gap-2"><span>✓</span> Built on WordPress: Industry-standard platform with a secure login dashboard.</li>
+          <li class="flex gap-2"><span>✓</span> Self-Editing Freedom: Easily update your own text, pricing, and images anytime.</li>
+          <li class="flex gap-2"><span>✓</span> Up to 5 Fully Responsive Pages (e.g., Home, About, Services, Gallery, Contact) </li>
+          <li class="flex gap-2"><span>✓</span> Connected Infrastructure: Secure contact forms + automatic WhatsApp chat button.</li>
+          <li class="flex gap-2"><span>✓</span> Local SEO Jumpstart: Optimised page layouts, title tags, and meta descriptions.</li>
+          <li class="flex gap-2"><span>✓</span> 2 Rounds of design adjustments before final launch. </li>
+        </ul>
+        <a href="#contact" class="block text-center bg-cream text-sage-dark font-semibold py-3 rounded-full hover:bg-white transition-colors">Start here</a>
+      </div>
+
+      <div class="reveal bg-beige rounded-soft p-8 border border-ink/5">
+        <h3 class="font-display text-xl font-semibold mb-1">Care & Updates</h3>
+        <p class="text-ink/60 text-sm mb-5">Ideal for clients who don't want to manage the website themselves.</p>
+        <p class="font-display text-3xl font-semibold text-sage-dark mb-1">From RM 60</p>
+        <p class="text-xs text-ink/50 mb-6">per month, cancel anytime</p>
+        <ul class="space-y-3 text-sm text-ink/75 mb-8">
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Content updates</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Image replacements</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Minor fixes</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> Email support</li>
+          <li class="flex gap-2"><span class="text-sage-dark">✓</span> A friendly person to ask, anytime</li>
+        </ul>
+        <a href="#contact" class="block text-center bg-white hover:bg-sage hover:text-cream transition-colors text-ink font-semibold py-3 rounded-full border border-ink/10">Ask about this</a>
+      </div>
+    </div>
+
+    <p class="text-center text-sm text-ink/55 mt-10 reveal">Tight budget? Tell me anyway — I'd rather adjust the scope than turn you away.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-24 sm:py-32 px-5 sm:px-8 bg-beige/50">
+  <div class="max-w-3xl mx-auto">
+    <div class="mb-14 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3 text-center">Good to know</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold text-center">Questions I get asked a lot</h2>
+    </div>
+
+    <div class="space-y-4 reveal">
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5" open>
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          Is domain and hosting included?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">No. Every website needs a domain name (for example, yourbusiness.com) and web hosting to keep it online. These are yearly services paid directly to the hosting provider. I'll help you choose the right option and guide you through the setup.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          I'm not techy at all. Will I be able to keep up?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">Completely. I explain everything in plain language, and I'll never assume you know technical terms. Most of my clients aren't tech people — that's exactly who I build for.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          How long does a website take?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">A simple page usually takes about a week. A full website is typically 2–4 weeks, depending on how quickly we can gather your content together. I'll give you a clear timeline before we start.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          What do I need to prepare before we start?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">Nothing fancy — just whatever you already have. A few photos, your business hours, prices if relevant, and a rough idea of what you'd like visitors to do (call you, visit, message you). I'll guide you through the rest.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          What if I need changes after the website is done?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">That's completely normal, and I expect it. Every project includes a few rounds of revisions, and afterwards you can ask about the Care & Updates plan or simply message me for a one-off fix.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          Do you only build for businesses based in Malaysia?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">Most of my clients are local, but I'm happy to work with small businesses anywhere, as long as we can communicate comfortably online.</p>
+      </details>
+
+      <details class="bg-white rounded-2xl p-6 shadow-sm border border-ink/5">
+        <summary class="flex justify-between items-center font-semibold text-ink gap-4">
+          What if I'm honestly on a tight budget?
+          <svg class="chev shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5F7053" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </summary>
+        <p class="text-ink/70 text-sm mt-3 leading-relaxed">Tell me anyway. I'll be upfront about what's realistic, and where possible, I'll suggest a smaller scope that still gets you something you're proud of — rather than turning you away.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 sm:py-32 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-12">
+
+    <div class="md:col-span-2 reveal">
+      <p class="text-sage-dark font-semibold uppercase text-sm tracking-wide mb-3">Let's talk</p>
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold mb-5">Say hello, no pressure</h2>
+      <p class="text-ink/70 leading-relaxed mb-8">Whether you already know what you need, or you're just curious what's possible — reach out. There's no obligation, and I reply personally to every message.</p>
+
+      <div class="space-y-4">
+        <a href="https://wa.me/60123456789" target="_blank" rel="noopener" class="flex items-center gap-4 bg-beige hover:bg-sage/15 transition-colors rounded-2xl p-4">
+          <div class="w-11 h-11 rounded-full bg-sage flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FAF6EF"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.38 5.07L2 22l5.07-1.34A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18c-1.6 0-3.1-.43-4.4-1.2l-.3-.18-3 .8.8-2.9-.2-.3A7.94 7.94 0 0 1 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8Z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">WhatsApp</p>
+            <p class="text-ink/60 text-sm">Fastest way to reach me</p>
+          </div>
+        </a>
+
+        <a href="mailto:hello@nursyakilar.com" class="flex items-center gap-4 bg-beige hover:bg-sage/15 transition-colors rounded-2xl p-4">
+          <div class="w-11 h-11 rounded-full bg-pink-dark flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FAF6EF"><path d="M2 5h20v14H2V5Zm2 2v.01L12 13l8-5.99V7H4Zm0 2.5V19h16V9.5l-8 6-8-6Z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Email</p>
+            <p class="text-ink/60 text-sm">nursyakilaroslan29@gmail.com</p>
+          </div>
+        </a>
+
+        <a href="https://instagram.com/nursyakilar" target="_blank" rel="noopener" class="flex items-center gap-4 bg-beige hover:bg-sage/15 transition-colors rounded-2xl p-4">
+          <div class="w-11 h-11 rounded-full bg-skyblue flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAF6EF" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Instagram</p>
+            <p class="text-ink/60 text-sm">@nursyakilar_</p>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/nursyakila-r-620733202/" target="_blank" rel="noopener" class="flex items-center gap-4 bg-beige hover:bg-sage/15 transition-colors rounded-2xl p-4">
+          <div class="w-11 h-11 rounded-full bg-sage-dark flex items-center justify-center shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FAF6EF"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 9h4v12H3V9Zm6.5 0H13v1.7h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.45 4.45 5.65V21h-4v-5.6c0-1.35-.02-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3v5.7h-4V9Z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">LinkedIn</p>
+            <p class="text-ink/60 text-sm">Let's connect professionally</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <form id="contactForm" action="https://formspree.io/f/mdareqkp" method="POST" class="md:col-span-3 reveal bg-beige/60 rounded-soft p-7 sm:p-9" novalidate>
+      <input type="hidden" name="_subject" value="New message from your nursyakilar website" />
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="name" class="block text-sm font-semibold mb-1.5">Your name</label>
+          <input id="name" name="name" type="text" required class="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm" placeholder="e.g. Aina" />
+        </div>
+        <div>
+          <label for="business" class="block text-sm font-semibold mb-1.5">Business name <span class="text-ink/40 font-normal">(optional)</span></label>
+          <input id="business" name="business" type="text" class="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm" placeholder="e.g. Kopi & Sons" />
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-5 mb-5">
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-1.5">Email</label>
+          <input id="email" name="email" type="email" required class="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label for="businessType" class="block text-sm font-semibold mb-1.5">What kind of business?</label>
+          <select id="businessType" name="businessType" class="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm">
+            <option>Café or restaurant</option>
+            <option>Home business / online shop</option>
+            <option>Tutoring</option>
+            <option>Clinic</option>
+            <option>Homestay</option>
+            <option>Freelancer</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label for="message" class="block text-sm font-semibold mb-1.5">Tell me a bit about what you need</label>
+        <textarea id="message" name="message" rows="4" required class="w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm" placeholder="No need to be formal — just tell me what's on your mind."></textarea>
+      </div>
+      <button id="submitBtn" type="submit" class="w-full sm:w-auto bg-sage hover:bg-sage-dark text-cream font-semibold px-8 py-3.5 rounded-full transition-colors shadow-md disabled:opacity-60">Send message</button>
+      <p id="formNote" class="text-sm mt-4 hidden" role="status"></p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-sage-dark text-cream/90 pt-16 pb-10 px-5 sm:px-8">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid sm:grid-cols-3 gap-10 mb-12">
+      <div>
+        <p class="font-display text-2xl font-semibold text-cream mb-3">NSR Web Studio</p>
+        <p class="text-cream/70 text-sm leading-relaxed max-w-xs">Simple websites for small businesses who deserve to be seen </p>
+      </div>
+      <div>
+        <p class="font-semibold text-cream mb-3 text-sm uppercase tracking-wide">Explore</p>
+        <ul class="space-y-2 text-sm text-cream/70">
+          <li><a href="#about" class="hover:text-cream">About</a></li>
+          <li><a href="#services" class="hover:text-cream">Services</a></li>
+          <li><a href="#pricing" class="hover:text-cream">Pricing</a></li>
+          <li><a href="#faq" class="hover:text-cream">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-semibold text-cream mb-3 text-sm uppercase tracking-wide">Find me</p>
+        <ul class="space-y-2 text-sm text-cream/70">
+          <li><a href="https://wa.me/60148008473" class="hover:text-cream">WhatsApp</a></li>
+          <li><a href="mailto:nursyakilaroslan29@gmail.com" class="hover:text-cream">nursyakilaroslan29@gmail.com</a></li>
+          <li><a href="https://instagram.com/nursyakilar" class="hover:text-cream">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/nursyakila-r-620733202/" class="hover:text-cream">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-cream/15 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-cream/60">
+      <p>© <span id="year"></span> nursyakilar</p>
+      <p class="flex items-center gap-1.5">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C.7 9 2 5 6 5c2 0 3.3 1 4 2.3C10.7 6 12 5 14 5c4 0 5.3 4 3.5 7.5C15 16.65 12 21 12 21Z"/></svg>
+        made with care
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to top -->
+<button id="backToTop" aria-label="Back to top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-sage text-cream shadow-lg opacity-0 translate-y-3 pointer-events-none flex items-center justify-center hover:bg-sage-dark z-40">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > 20;
+    header.classList.toggle('scrolled', scrolled);
+    if (window.scrollY > 480){
+      backToTop.classList.remove('opacity-0','translate-y-3','pointer-events-none');
+      backToTop.classList.add('opacity-100','translate-y-0');
+    } else {
+      backToTop.classList.add('opacity-0','translate-y-3','pointer-events-none');
+      backToTop.classList.remove('opacity-100','translate-y-0');
+    }
+  });
+  backToTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('iconOpen');
+  const iconClose = document.getElementById('iconClose');
+  let menuOpen = false;
+  function toggleMenu(){
+    menuOpen = !menuOpen;
+    menuBtn.setAttribute('aria-expanded', menuOpen);
+    mobileMenu.style.maxHeight = menuOpen ? mobileMenu.scrollHeight + 'px' : '0px';
+    iconOpen.classList.toggle('hidden', menuOpen);
+    iconClose.classList.toggle('hidden', !menuOpen);
+  }
+  menuBtn.addEventListener('click', toggleMenu);
+  document.querySelectorAll('.menu-link').forEach(l => l.addEventListener('click', () => { if(menuOpen) toggleMenu(); }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // contact form — sends to Formspree
+  const form = document.getElementById('contactForm');
+  const formNote = document.getElementById('formNote');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()){ form.reportValidity(); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    formNote.classList.add('hidden');
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formNote.textContent = "Thank you! Your message is on its way to me. I'll get back to you personally, usually within a day. 🌿";
+        formNote.classList.remove('hidden');
+        formNote.classList.remove('text-pink-dark');
+        formNote.classList.add('text-sage-dark');
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (err) {
+      formNote.textContent = "Hmm, that didn't go through. Please try WhatsApp or email instead — links are just above.";
+      formNote.classList.remove('hidden');
+      formNote.classList.remove('text-sage-dark');
+      formNote.classList.add('text-pink-dark');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    }
+  });
+</script>
+
+</body>
+</html>
